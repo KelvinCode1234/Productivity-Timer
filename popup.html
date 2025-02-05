@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Timer</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="icon" href="https://img.icons8.com/color/48/timer--v1.png" type="image/png">
+</head>
+<body>
+    <div class="timer-container">
+        <h1 id="timer">25:00</h1>
+        <input type="number" id="custom-time" placeholder="Enter minutes" />
+        <button id="set-time-btn">Set Time</button>
+        <button id="start-btn">Start</button>
+        <button id="pause-btn">Pause</button>
+        <button id="reset-btn">Reset</button>
+    </div>
+    
+    <div id="toast-container"></div>
+
+    <div class="history-container">
+        <h2>Timer <span>History</span></h2>
+        <hr>
+        <ul id="history-list"></ul>
+    </div>
+        
+  <script src="popup.js"></script>
+  <script>
+    function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+  
+        timerDisplay.innerHTML = `
+        <span class="minutes">${String(minutes).padStart(2, "0")}</span>:
+        <span class="seconds">${String(seconds).padStart(2, "0")}</span>
+        `;
+    }
+  </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Miniver&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+  
+.timer-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+  
+h1 {
+    font-size: 2.5rem;
+    margin: 20px 0;
+    user-select: none;
+}
+  
+input[type="number"] {
+    font-size: 12px;
+    padding: 13px 15px;
+    margin: 10px 0;
+    width: 100px;
+    text-align: center;
+    border: 2px solid #ababab;
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="number"]::placeholder {
+    font-weight: 600;
+    color: #797979;
+}
+
+input[type="number"]:focus {
+    border: 2px solid #007bff;
+    border-radius: 5px;
+}
+
+.delete-btn {
+    background-color: #ff4d4d; 
+    color: white; 
+    border: none; 
+    border-radius: 4px; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+    font-size: 0.9rem;
+    margin-left: 10px; 
+}
+  
+.delete-btn:hover {
+    background-color: #ff0000; 
+}
+  
+.delete-btn:active {
+    background-color: #cc0000; 
+}
+  
+  
+button {
+    display: inline-block;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+  
+button:hover {
+    background-color: #0056b3;
+}
+
+.minutes {
+    color: #90ee90;
+}
+  
+.seconds {
+    color: #ffcccb;
+}
+
+.history-container {
+    margin-top: 20px;
+}
+  
+.history-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+  
+#history-list {
+    list-style-type: none;
+    padding: 0;
+}
+  
+#history-list li {
+    font-size: 1rem;
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.history-container span {
+    color: #007bff;
+}
+
+
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+  
+.toast {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 12px; 
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 5px rgba(0, 0, 0, 0.3);
+    animation: slide-in 0.5s, fade-out 0.5s 3s forwards;
+    opacity: 1;
+}
+
+
+.toast.info {
+    background-color: #3498db; 
+}
+
+.toast.warning {
+    background-color: #f1c40f;
+    color: black;
+}
+  
+.toast.success {
+    background-color: #2ecc71; 
+}
+  
+.toast.error {
+    background-color: #e74c3c; 
+}
+  
+  
+  /* Toast Animation */
+@keyframes slide-in {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+}
+  
+@keyframes fade-out {
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background-color: #333;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+    .timer-container {
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+    
+}
+
+@media screen and (max-width: 600px) {
+    .timer-container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    button {
+        font-weight: bolder;
+        font-size: 0.7rem;
+        padding: 8px 15px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .timer-container {
+      margin: 0 auto;
+    }
+
+    button {
+        font-weight: bolder;
+        font-size: 0.6rem;
+        padding: 8px 15px;
+    }
+}
+
+
+  
+  
+  
+  
