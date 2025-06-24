@@ -13,7 +13,8 @@
     "default_icon": "icons/icon48.png"
   },
   "permissions": ["notifications", "storage"],
-  "host_permissions": ["*://*/*"]
+  "host_permissions": ["*://*/*"],
+  "license": "MIT"
 }
 
 
