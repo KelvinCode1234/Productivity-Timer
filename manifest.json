@@ -12,9 +12,15 @@
     "default_popup": "popup.html",
     "default_icon": "icons/icon48.png"
   },
-  "permissions": ["notifications", "storage"],
+  "permissions": [
+    "notifications",
+    "storage",
+    "alarms"
+  ],
   "host_permissions": ["*://*/*"],
-  "license": "MIT"
+  "background": {
+    "service_worker": "background.js"
+  }
 }
 
 

@@ -19,7 +19,10 @@ let timerHistory = JSON.parse(localStorage.getItem("timerHistory")) || [];
 function updateTimerDisplay() {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
-  timerDisplay.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  timerDisplay.innerHTML = `
+      <span class="minutes">${String(minutes).padStart(2, "0")}</span>:
+      <span class="seconds">${String(seconds).padStart(2, "0")}</span>
+  `;
 }
 
 // Function to show toast notifications
@@ -32,7 +35,7 @@ function showToast(message, type = "info") {
   // Remove toast after animation
   setTimeout(() => {
     toast.remove();
-  }, 3500); // Matches the fade-out animation duration
+  }, 1500); // Matches the fade-out animation duration
 }
 
 // Function to notify users via desktop notifications and toast
@@ -49,40 +52,63 @@ function notifyUser(message) {
   }
 }
 
-// Function to start the timer
-function startTimer() {
-  if (timerInterval) return; // Prevent multiple intervals
+// Helper to send timer commands to background
+function sendTimerCommand(action, duration) {
+  return new Promise((resolve) => {
+    chrome.runtime.sendMessage({ action, duration }, resolve);
+  });
+}
 
-  timerInterval = setInterval(() => {
-    if (!isPaused && timeLeft > 0) {
-      timeLeft--;
+// Update popup UI from background timer state
+async function syncTimerFromBackground() {
+  chrome.runtime.sendMessage({ action: "getTimerState" }, (data) => {
+    if (data && data.timerEndTime && !data.timerPaused) {
+      const secondsLeft = Math.max(0, Math.round((data.timerEndTime - Date.now()) / 1000));
+      timeLeft = secondsLeft;
+      isPaused = false;
       updateTimerDisplay();
-    } else if (timeLeft <= 0) {
+      if (!timerInterval) startTimer();
+    } else if (data && data.timerPaused) {
+      timeLeft = data.timerDuration || 0;
+      isPaused = true;
+      updateTimerDisplay();
       clearInterval(timerInterval);
       timerInterval = null;
-      notifyUser("Time's up! Take a break.");
+    } else {
+      timeLeft = 25 * 60;
+      isPaused = false;
+      updateTimerDisplay();
+      clearInterval(timerInterval);
+      timerInterval = null;
     }
-  }, 1000);
+  });
 }
 
-// Function to pause or resume the timer
-function togglePause() {
-  if (timerInterval) {
-    isPaused = !isPaused;
-    pauseButton.textContent = isPaused ? "Resume" : "Pause";
-    showToast(isPaused ? "Timer Paused" : "Timer Resumed", "info");
+// Override timer controls to use background
+async function startTimer() {
+  if (timerInterval) return;
+  await sendTimerCommand("startTimer", timeLeft);
+  showToast("Timer Started", "success");
+  timerInterval = setInterval(syncTimerFromBackground, 1000);
+}
+
+async function togglePause() {
+  if (isPaused) {
+    await sendTimerCommand("resumeTimer");
+    isPaused = false;
+    showToast("Timer Resumed", "info");
+  } else {
+    await sendTimerCommand("pauseTimer");
+    isPaused = true;
+    showToast("Timer Paused", "info");
   }
+  syncTimerFromBackground();
 }
 
-// Function to reset the timer
-function resetTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-  isPaused = false;
-  pauseButton.textContent = "Pause";
-  timeLeft = 25 * 60; // Reset to default 25 minutes
-  updateTimerDisplay();
+async function resetTimer() {
+  await sendTimerCommand("resetTimer");
   showToast("Timer Reset", "warning");
+  syncTimerFromBackground();
 }
 
 // Function to set a custom time
@@ -105,6 +131,8 @@ function setCustomTime() {
     updateTimerDisplay();
     renderHistory(); // Update history list in the UI
     showToast(`Custom timer set to ${customMinutes} minutes`, "success");
+    sendTimerCommand("startTimer", timeLeft);
+    syncTimerFromBackground();
   } else {
     showToast("Please enter a valid number of minutes.", "error");
   }
@@ -145,6 +173,19 @@ startButton.addEventListener("click", startTimer);
 pauseButton.addEventListener("click", togglePause);
 resetButton.addEventListener("click", resetTimer);
 setTimeButton.addEventListener("click", setCustomTime);
+
+// Listen for ESC key to close popup but keep timer running
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    window.close();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  syncTimerFromBackground();
+  renderHistory();
+  updateTimerDisplay();
+});
 
 // Check and request notification permissions
 if (Notification.permission !== "granted" && Notification.permission !== "denied") {
