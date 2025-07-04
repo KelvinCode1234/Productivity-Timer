@@ -81,6 +81,13 @@ async function syncTimerFromBackground() {
       clearInterval(timerInterval);
       timerInterval = null;
     }
+
+    // Update pause button text based on timer state
+    if (data && data.timerPaused) {
+      pauseButton.textContent = "Resume";
+    } else {
+      pauseButton.textContent = "Pause";
+    }
   });
 }
 
@@ -96,10 +103,12 @@ async function togglePause() {
   if (isPaused) {
     await sendTimerCommand("resumeTimer");
     isPaused = false;
+    pauseButton.textContent = "Pause";
     showToast("Timer Resumed", "info");
   } else {
     await sendTimerCommand("pauseTimer");
     isPaused = true;
+    pauseButton.textContent = "Resume";
     showToast("Timer Paused", "info");
   }
   syncTimerFromBackground();

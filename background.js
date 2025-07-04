@@ -49,6 +49,17 @@ chrome.alarms.onAlarm.addListener((alarm) => {
       message: "Time's up! Take a break.",
       priority: 2
     });
+    // Play custom sound
+    playNotificationSound();
     chrome.storage.local.set({ timerEndTime: null, timerPaused: false, timerDuration: 0 });
   }
 });
+
+function playNotificationSound() {
+  try {
+    const audio = new Audio(chrome.runtime.getURL('notification.mp3'));
+    audio.play();
+  } catch (e) {
+    // Audio may not play in all environments, but try
+  }
+}
