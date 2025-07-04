@@ -91,6 +91,38 @@ async function syncTimerFromBackground() {
   });
 }
 
+async function syncTimerFromBackground() {
+  chrome.runtime.sendMessage({ action: "getTimerState" }, (data) => {
+    if (data && data.timerEndTime && !data.timerPaused) {
+      const secondsLeft = Math.max(0, Math.round((data.timerEndTime - Date.now()) / 1000));
+      timeLeft = secondsLeft;
+      isPaused = false;
+      updateTimerDisplay();
+      if (!timerInterval) startTimer();
+      // If timer reached zero, clear interval
+      if (secondsLeft === 0) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        pauseButton.textContent = "Pause";
+      }
+    } else if (data && data.timerPaused) {
+      timeLeft = data.timerDuration || 0;
+      isPaused = true;
+      updateTimerDisplay();
+      clearInterval(timerInterval);
+      timerInterval = null;
+      pauseButton.textContent = "Resume";
+    } else {
+      timeLeft = 25 * 60;
+      isPaused = false;
+      updateTimerDisplay();
+      clearInterval(timerInterval);
+      timerInterval = null;
+      pauseButton.textContent = "Pause";
+    }
+  });
+}
+
 // Override timer controls to use background
 async function startTimer() {
   if (timerInterval) return;
