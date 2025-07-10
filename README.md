@@ -52,7 +52,7 @@ This project is licensed under the MIT License.
 ---
 
 <div align="center" style="margin-top: 24px; font-size: 1em; color: #888;">
-  <a href="PRIVACY.html" target="_blank" style="color: #007bff; text-decoration: none;">Privacy Policy</a>
+  <a href="PRIVACY" target="_blank" style="color: #007bff; text-decoration: none;">Privacy Policy</a>
 </div>
 
 

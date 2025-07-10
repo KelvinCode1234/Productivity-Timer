@@ -1,0 +1,24 @@
+{
+  "name": "productivity-timer",
+  "version": "1.0.0",
+  "description": "Productivity Timer is a simple and effective Chrome extension designed to help you stay focused and manage your time efficiently. It features a customizable timer, persistent background notifications, a custom alert sound, and a history of your completed sessions.",
+  "main": "background.js",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KelvinCode1234/Productivity-Timer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/KelvinCode1234/Productivity-Timer/issues"
+  },
+  "homepage": "https://github.com/KelvinCode1234/Productivity-Timer#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
