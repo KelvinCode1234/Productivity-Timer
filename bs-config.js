@@ -8,7 +8,7 @@ module.exports = {
           req.url = `${url}.html`;
         }
         next();
-      }
-    ]
-  }
+      },
+    ],
+  },
 };
