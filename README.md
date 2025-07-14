@@ -14,11 +14,12 @@ Productivity Timer is a simple and effective Chrome extension designed to help y
 - Clean and modern user interface
 
 ## Installation
-1. Download or clone this repository to your computer.
-2. Open Google Chrome and go to `chrome://extensions/`.
-3. Enable "Developer mode" (top right corner).
-4. Click "Load unpacked" and select the folder containing this extension's files.
+1. Visit Chrome Web Store.
+2. Search for (Productivity Timer ⏲)
+3. ![Screenshot](icons/screenshot(1).png)
+4. Click it and `Add` it to your chrome extension. 
 5. The Productivity Timer icon will appear in your Chrome toolbar.
+6. Enjoy the Persistent Productive Timer that helps you achieve your goal without burning out time anymore
 
 ## Usage
 1. Click the Productivity Timer icon in your Chrome toolbar to open the popup.
