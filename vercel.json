@@ -1,5 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/PRIVACY", "destination": "/PRIVACY.html" }
-  ]
-}

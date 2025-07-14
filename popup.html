@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,27 +15,48 @@
 
 <body>
   <div class="timer-container">
-    <h1 id="timer">25:00</h1>
-    <input type="number" id="custom-time" placeholder="Enter minutes" />
-    <button id="set-time-btn">Set Time</button>
-    <button id="start-btn">Start</button>
-    <button id="pause-btn">Pause</button>
-    <button id="reset-btn">Reset</button>
+    <div class="timer-display">
+      <div class="timer-progress" id="timer-progress"></div>
+      <div class="timer-text" id="timer">
+        <span class="minutes">25</span>:<span class="seconds">00</span>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <div class="custom-time">
+        <input type="number" id="custom-time" placeholder="Minutes" min="1">
+        <button id="set-time-btn" class="primary">
+          <i class="fas fa-check"></i> Set
+        </button>
+      </div>
+      
+      <div class="button-group">
+        <button id="start-btn" class="primary">
+          <i class="fas fa-play"></i> Start
+        </button>
+        <button id="pause-btn" class="secondary">
+          <i class="fas fa-pause"></i> Pause
+        </button>
+      </div>
+      
+      <button id="reset-btn" class="secondary">
+        <i class="fas fa-redo"></i> Reset
+      </button>
+    </div>
   </div>
 
-  <div id="toast-container"></div>
-
   <div class="history-container">
-    <h2>Timer <span>History</span></h2>
+    <h2><i class="fas fa-history"></i> Timer History</h2>
     <hr>
     <ul id="history-list"></ul>
   </div>
 
-  <footer style="margin-top: 24px; text-align: center; font-size: 0.95em; color: #888;">
-    <a href="PRIVACY" target="_blank" style="color: #007bff; text-decoration: none;">Privacy Policy</a>
+  <footer>
+    <a href="PRIVACY.html" target="_blank">Privacy Policy</a>
   </footer>
+
+  <div id="toast-container"></div>
 
   <script src="popup.js"></script>
 </body>
-
 </html>

@@ -25,6 +25,19 @@ function updateTimerDisplay() {
   `;
 }
 
+
+function updateProgressRing() {
+  const totalTime = timerDuration || (25 * 60);
+  const progressPercent = ((totalTime - timeLeft) / totalTime) * 100;
+  const progressRing = document.getElementById("timer-progress");
+  
+  if (progressRing) {
+    progressRing.style.background = `
+      conic-gradient(var(--primary) ${progressPercent}%, var(--border) ${progressPercent}%)
+    `;
+  }
+}
+
 // Function to show toast notifications
 function showToast(message, type = "info") {
   const toast = document.createElement("div");

@@ -4,8 +4,7 @@
   "description": "Productivity Timer is a simple and effective Chrome extension designed to help you stay focused and manage your time efficiently. It features a customizable timer, persistent background notifications, a custom alert sound, and a history of your completed sessions.",
   "main": "background.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
