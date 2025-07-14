@@ -305,7 +305,8 @@ footer a:hover {
   }
 
   .timer-text {
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: 700;
   }
 
   .button-group {

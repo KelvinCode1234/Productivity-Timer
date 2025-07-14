@@ -44,7 +44,7 @@ Productivity Timer is a simple and effective Chrome extension designed to help y
 - `alarms` - To run the timer in the background
 
 ## Screenshots
-![Screenshot](https://img.icons8.com/color/48/timer--v1.png)
+![Screenshot](icons/screenshot.png)
 
 ## License
 This project is licensed under the MIT License.
