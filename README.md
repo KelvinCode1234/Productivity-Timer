@@ -15,9 +15,9 @@ Productivity Timer is a simple and effective Chrome extension designed to help y
 
 ## Installation
 1. Visit Chrome Web Store.
-2. Search for (Productivity Timer ⏲)
+2. Search for **(Productivity Timer ⏲)**
 ---
-3. You will find this --------  ![Screenshot](icons/screenshot(1).png)
+3. You will find this 👇👇  ![Screenshot](icons/screenshot(1).png)
 ---
 4. Click it and `Add to Chrome` it to your chrome extension. 
 5. The Productivity Timer icon will appear in your Chrome toolbar.
