@@ -34,8 +34,8 @@ body {
 
 .timer-display {
   position: relative;
-  width: 180px;
-  height: 180px;
+  width: 190px;
+  height: 190px;
   margin: 0 auto 24px;
 }
 
@@ -300,13 +300,14 @@ footer a:hover {
   }
 
   .timer-display {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
   }
 
   .timer-text {
-    font-size: 25px;
-    font-weight: 700;
+    font-size: 21px;
+    font-weight: bolder;
+    align-items: center;
   }
 
   .button-group {
